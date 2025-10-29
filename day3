@@ -1,0 +1,186 @@
+# 프론트엔드 부트캠프 3일차 학습노트 (2025-10-29)
+
+오늘 배운 내용은 CSS의 폰트, 단위, 리스트, 박스 모델, 레이아웃, 트랜스폼, 트랜지션, 애니메이션까지 포함합니다.  
+ 
+---
+
+## 1️⃣ CSS 폰트 스타일
+
+핵심 속성:
+- `color`: 글자 색상
+- `font-family`: 폰트 종류
+- `font-size`: 글자 크기
+- `font-weight`: 글자 굵기
+- `text-transform`: 대소문자 변환
+- `text-decoration`: 텍스트 장식
+- `text-shadow`: 텍스트 그림자
+- `text-align`: 텍스트 정렬
+- `line-height`: 줄 간격
+- `letter-spacing`: 자간
+- `text-indent`: 들여쓰기
+- `word-break`: 줄바꿈 처리
+  - `break-all`: 한글 포함 모든 문자 줄바꿈
+  - `keep-all`: 한글 단어 단위 유지
+- `text-overflow`: 텍스트 넘침 처리
+
+```css
+p {
+  color: #333;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  word-break: break-all;
+}
+2️⃣ CSS 단위
+절대 단위: px
+
+상대 단위: %, vw, vh
+
+폰트/레이아웃 기준: em(부모 기준), rem(루트 기준)
+
+css
+코드 복사
+div {
+  width: 50%;
+  height: 20vh;
+  font-size: 1.2rem;
+  padding: 1em;
+}
+3️⃣ CSS 리스트 스타일
+list-style-type: disc, circle, square, decimal, lower-alpha, upper-roman, none
+
+list-style-position: inside / outside
+
+list-style-image: 이미지 마커
+
+가상 요소: ::marker, ::before, ::after
+
+css
+코드 복사
+ul {
+  list-style-type: square;
+  list-style-position: inside;
+}
+
+li::marker {
+  color: red;
+}
+4️⃣ CSS Box Model
+크기: width, height
+
+여백: padding, margin
+
+테두리/효과: border, border-radius, box-shadow, opacity
+
+콘텐츠 숨기기: display:none, visibility:hidden, text-indent:-9999px, opacity:0
+
+비율 유지: aspect-ratio, padding %, object-fit
+
+css
+코드 복사
+.box {
+  width: 300px;
+  aspect-ratio: 16/9;
+  padding: 20px;
+  margin: 10px auto;
+  border: 2px solid #333;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  background: #f0f0f0;
+  opacity: 0.8;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+5️⃣ CSS Position & Z-Index
+css
+코드 복사
+.relative-box { position: relative; top: 20px; left: 30px; }
+.absolute-box { position: absolute; top: 10px; right: 10px; }
+.fixed-box { position: fixed; top: 50px; right: 20px; z-index: 1000; }
+.sticky-box { position: sticky; top: 60px; }
+6️⃣ Flex & Grid 레이아웃
+Flex 예제
+css
+코드 복사
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-item {
+  width: 60px;
+  height: 60px;
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+Grid 예제
+css
+코드 복사
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.grid-item {
+  background: #ccc;
+  padding: 20px;
+}
+7️⃣ Transform, Transition, Animation
+Transform + Transition
+css
+코드 복사
+.card {
+  width: 150px;
+  height: 100px;
+  background-color: #ffc107;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+Animation 예제
+css
+코드 복사
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #eee;
+  border-top: 5px solid #007bff;
+  border-radius: 50%;
+  margin: 20px auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+8️⃣ CSS 상태 선택자 & 속성값 선택자
+링크 상태: :link, :visited, :hover, :active
+
+상호작용: :focus, :focus-visible, :focus-within
+
+속성값 선택자: [attr="value"], [attr^="start"], [attr$="end"], [attr*="contain"], [attr~="word"], [attr|="lang"]
+
+폼 상태: :enabled, :disabled, :checked
+
+✅ 정리
+오늘 배운 내용은 CSS 핵심 속성을 직접 실습하면서 이해하는 것이 중요
+
+초보자는 작은 박스/글자/버튼부터 실습하면서 속성 변화를 눈으로 확인
+
+Flex/Grid, Transform, Transition, Animation은 반복 연습이 효과적
