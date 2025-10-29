@@ -1,0 +1,332 @@
+# Frontend Bootcamp Day 2
+프론트엔드 개발자 양성과정 | Day 2 학습 기록
+
+---
+
+## 학습 요약
+
+| 교시 | 주요 내용 |
+|------|------------|
+| 1교시 | `<table>` 태그 |
+| 2교시 | `<video>`, `<iframe>`, `<svg>`, `<canvas>` |
+| 3교시 | SVG, Canvas 실습 (`svg-canvas.html`) |
+| 4교시 | Form 실습 중 오류 해결 (`form.html`) |
+| 5교시 | Table 심화, Form & SVG 중요성, SEO |
+| 6교시 | CSS 기본 (padding, margin, border, 인라인 스타일) |
+| 7교시 | CSS 상속 |
+| 8교시 | CSS 상속 & 우선순위, 관계 선택자, 네이밍 규칙 |
+| 9교시 | CSS 방법론 (BEM, OOCSS, SMACSS) |
+
+---
+
+## 문제 해결 경험
+
+- **문제:** Form 텍스트 입력창이 오른쪽으로 삐져나오는 현상  
+- **해결:** `box-sizing` 속성 추가  
+  ```css
+  * {
+    box-sizing: border-box;
+  }
+  ```
+- **교훈:** 기초 속성 하나로도 큰 레이아웃 오류가 발생할 수 있음.  
+  앞으로는 코드 정확성과 기본기를 더 탄탄히 다질 예정.
+
+---
+
+## CSS 기본
+
+- `padding`: 내부 여백  
+- `margin`: 외부 여백  
+- `border`: 테두리  
+- 인라인 스타일은 필요할 때만 사용  
+
+---
+
+## CSS 우선순위
+
+1. 인라인 스타일 (`style="..."`)
+2. 아이디 선택자 (`#id`)
+3. 클래스 / 속성 선택자 (`.class`, `[attr]`)
+4. 타입 선택자 (`element`)
+5. 전체 선택자 (`*`)
+
+---
+
+## 관계 선택자
+
+| 선택자 | 기호 | 선택 범위 | 예제 |
+|---------|-------|------------|-------|
+| 자손 선택자 | (공백) | 모든 하위 요소 | `div p` |
+| 자식 선택자 | `>` | 직계 자식만 | `div > p` |
+| 일반 형제 선택자 | `~` | 뒤의 모든 형제 | `h2 ~ p` |
+| 인접 형제 선택자 | `+` | 바로 다음 형제 | `h2 + p` |
+
+---
+
+## 네이밍 규칙
+
+- 의미 있는 이름 사용 (`.nav-menu`, `.product-card`)
+- 축약어 최소화 (`btn`, `nav` 등만 허용)
+- 소문자만 사용
+- 특수문자 제한 (문자, 숫자, `-`, `_`만)
+- 숫자로 시작 금지
+- 이름 길이 적절히 유지
+
+---
+
+## CSS 방법론
+
+### BEM (Block, Element, Modifier)
+```text
+.block {}
+.block__element {}
+.block--modifier {}
+```
+
+### OOCSS 핵심
+1. 구조와 스킨 분리 (`.box`, `.btn`, `.theme-primary`)
+2. 컨테이너와 콘텐츠 분리 (`.title`, `.text` 등 위치 독립)
+
+### SMACSS 구성
+- Base  
+- Layout  
+- Module  
+- State  
+- Theme  
+
+---
+
+## SEO (검색엔진 최적화)
+
+**중요성**
+- 트래픽 증가  
+- 신뢰성 구축  
+- 비용 효율성  
+
+---
+
+## TIL (Today I Learned)
+
+> `box-sizing` 한 줄이 문제 해결을 도와 주웠습니다.  
+> 오늘은 CSS의 기초 원리를 되짚으며 작은 실수가 큰 결과로 이어질 수 있음을 배웠습니다.  
+
+
+오늘 배운내용을 토대로 인터넷을 검색하며 혼자서도 공부를 복습 하였습니다.
+아직은 이해 만 하였을 뿐 , 틀,구조 자체도 직접 만들 수 있는 수준은 아니기에 
+따라서 직접 타이핑 하는 형식으로 아래 코드를 짜 보았습니다.
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나의 미니 프로필 페이지</title>
+    <style>
+      /* 기본 설정 */
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fafafa;
+        color: #333;
+      }
+
+      .theme-primary {
+        color: #0078ff;
+      }
+
+      header.profile {
+        text-align: center;
+        background-color: #e9f3ff;
+        padding: 40px 20px;
+      }
+
+      .profile__img {
+        width: 130px;
+        border-radius: 50%;
+        border: 4px solid #0078ff;
+      }
+
+      .profile__name {
+        font-size: 1.8rem;
+        margin-top: 15px;
+      }
+
+      .profile__desc {
+        font-size: 1rem;
+        color: #555;
+      }
+
+      section {
+        width: 90%;
+        max-width: 800px;
+        margin: 40px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        border-left: 5px solid #0078ff;
+        padding-left: 10px;
+        margin-bottom: 15px;
+      }
+
+      /* table 예제 */
+      .hobby__table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .hobby__table th,
+      .hobby__table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+      }
+
+      .hobby__table th {
+        background-color: #f2f2f2;
+      }
+
+      /* video & iframe 영역 */
+      .video iframe,
+      .video video {
+        width: 100%;
+        height: 315px;
+        border-radius: 10px;
+      }
+
+      /* form 영역 */
+      .guestbook__form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .guestbook__form input,
+      .guestbook__form textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+
+      .guestbook__form button {
+        padding: 10px;
+        border: none;
+        background-color: #0078ff;
+        color: #fff;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .guestbook__form button:hover {
+        background-color: #005fcc;
+      }
+
+      /* SVG & Canvas 영역 */
+      .graphic {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      canvas {
+        border: 2px solid #ccc;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="profile">
+      <img
+        src="https://via.placeholder.com/130"
+        alt="프로필 사진"
+        class="profile__img"
+      />
+      <h1 class="profile__name theme-primary">김영종</h1>
+      <p class="profile__desc">프론트엔드 개발자가 되기 위한 2일차 학습자 💻</p>
+    </header>
+
+    <section class="hobby">
+      <h2>🎯 취미 & 관심사</h2>
+      <table class="hobby__table">
+        <tr>
+          <th>취미</th>
+          <th>이유</th>
+        </tr>
+        <tr>
+          <td>코딩</td>
+          <td>문제를 해결하며 성장할 때 즐거워요</td>
+        </tr>
+        <tr>
+          <td>독서</td>
+          <td>아이디어를 얻고 사고를 넓혀줍니다</td>
+        </tr>
+        <tr>
+          <td>산책</td>
+          <td>생각을 정리하고 기분전환이 됩니다</td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="video">
+      <h2>🎬 내가 좋아하는 영상</h2>
+      <iframe
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        title="YouTube video"
+        allowfullscreen
+      ></iframe>
+    </section>
+
+    <section class="guestbook">
+      <h2>💌 방명록</h2>
+      <form
+        class="guestbook__form"
+        onsubmit="alert('메시지가 전송되었습니다!'); return false;"
+      >
+        <input type="text" placeholder="이름을 입력하세요" required />
+        <textarea
+          placeholder="메시지를 남겨주세요"
+          rows="4"
+          required
+        ></textarea>
+        <button type="submit">전송</button>
+      </form>
+    </section>
+
+    <section class="art">
+      <h2>🎨 SVG & Canvas 예제</h2>
+      <div class="graphic">
+        <svg width="100" height="100">
+          <circle
+            cx="50"
+            cy="50"
+            r="40"
+            stroke="#0078ff"
+            stroke-width="4"
+            fill="#e9f3ff"
+          />
+        </svg>
+        <canvas id="myCanvas" width="100" height="100"></canvas>
+      </div>
+    </section>
+
+    <script>
+      // Canvas 간단한 그림
+      const canvas = document.getElementById("myCanvas");
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#0078ff";
+      ctx.fillRect(20, 20, 60, 60);
+    </script>
+  </body>
+</html>
+
+
