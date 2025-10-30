@@ -528,3 +528,220 @@ main {
 </html>
 
 
+# 프론트엔드 부트캠프 4일차 복습 (2025-10-30)
+
+## 10분 예습 — CSS 3D 속성 기본 개념
+파일: `3d-solo.html`
+
+### 1. `perspective` (원근감)
+```css
+.container {
+  perspective: 1000px; /* 원근감 설정 */
+}
+.item:hover {
+  transform: rotateX(60deg); /* X축 회전 */
+  transform: rotateY(60deg); /* Y축 회전 */
+}
+```
+
+### 2. 3D 이동 (translateZ, translate3d)
+```css
+.item:hover {
+  transform: translateZ(50px); /* Z축 앞으로 */
+  transform: translateZ(-50px); /* Z축 뒤로 */
+  transform: translate3d(30px, -20px, 40px); /* X, Y, Z 이동 */
+}
+```
+
+### 3. `transform-style` (3D 공간 유지)
+```css
+.cube-container {
+  transform-style: preserve-3d; /* 3D 공간 유지 */
+  animation: rotateCube 6s infinite linear;
+}
+.cube-face { position: absolute; }
+.front { transform: translateZ(50px); }
+.back { transform: rotateY(180deg) translateZ(50px); }
+.right { transform: rotateY(90deg) translateZ(50px); }
+```
+
+### 4. `backface-visibility` (뒷면 표시 여부)
+```css
+.card-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+.card-front, .card-back {
+  backface-visibility: hidden;
+}
+.card-back {
+  transform: rotateY(180deg);
+}
+```
+
+### 5. `perspective-origin` (시점 위치)
+```css
+.container {
+  perspective: 600px;
+  perspective-origin: center center; /* 기본값 */
+  perspective-origin: center top;    /* 위쪽 시점 */
+  perspective-origin: left center;   /* 왼쪽 시점 */
+}
+```
+
+### 6. 실용적인 3D 효과
+```css
+/* 책 넘기기 */
+.book-cover {
+  transform-origin: left;
+  transition: transform 0.8s ease;
+}
+.book:hover .book-cover {
+  transform: rotateY(-30deg);
+}
+
+/* 떠다니는 애니메이션 */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotateX(0); }
+  50% { transform: translateY(-20px) rotateX(10deg); }
+}
+```
+
+---
+
+## 2교시 — 반응형 웹 핵심 기술
+
+### 1. Fluid Grid (유동 그리드)
+- Wrap과 `calc()` 활용  
+
+### 2. Flexible Image (가변 이미지)  
+
+### 3. Media Queries (미디어 쿼리)
+```css
+/* 화면 너비 기반 */
+@media (min-width: 768px) { /* 태블릿 */ }
+@media (min-width: 1024px) { /* 데스크톱 */ }
+
+/* 범위 지정 */
+@media (min-width: 768px) and (max-width: 1023px) { /* 태블릿 전용 */ }
+
+/* 화면 방향 */
+@media (orientation: portrait) { /* 세로 */ }
+@media (orientation: landscape) { /* 가로 */ }
+
+/* 고해상도 디스플레이 */
+@media (min-resolution: 192dpi) { }
+
+/* 다크모드 */
+@media (prefers-color-scheme: dark) { }
+
+/* 애니메이션 선호도 */
+@media (prefers-reduced-motion: reduce) { }
+
+/* 호버 지원 여부 */
+@media (hover: hover) { }
+@media (hover: none) { }
+```
+
+### CSS 계산 및 비교 함수
+```css
+/* calc() */
+width: calc(100% - 100px);
+
+/* min(), max(), clamp() */
+width: min(80%, 600px);
+width: max(200px, 50%);
+width: clamp(200px, 50vw, 600px);
+```
+
+### 반응형 그리드 예제
+```css
+.grid { grid-template-columns: 1fr; } /* 모바일: 1열 */
+@media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+```
+
+---
+
+## 3교시 — CSS 심화 이론
+- CSS 기본 지식, 작성법  
+- CSS 적용 방식과 At-Rule  
+- 선택자 가이드 (기본 → 복합)  
+- 상속과 스타일 제어  
+- 텍스트 및 글꼴 꾸미기  
+- CSS 단위 이해와 활용  
+- 목록 스타일링 가이드  
+- 가상 선택자와 요소  
+
+---
+
+## 4교시 — 박스 꾸미기 실습
+```css
+/* 원형 박스 */
+.circle-box {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #3498db, #e74c3c);
+}
+
+/* 그림자 박스 */
+.shadow-box {
+  padding: 20px; background: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+.shadow-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+```
+
+---
+
+## 5~7교시 — 카드 제작 실습 / 내비게이션 바 반복 학습
+
+### 목표
+- 상단 고정 내비게이션 바 제작
+- 스크롤 시 항상 보이도록 설정
+- 메뉴 구조: `nav > ul > li > a`
+
+### CSS 예시
+```css
+nav { position: fixed; top: 0; width: 100%; background-color: #333; }
+nav ul { display: flex; list-style: none; padding: 0; margin: 0; }
+nav li a { color: white; text-decoration: none; padding: 15px 25px; }
+nav li a:hover { background-color: #555; }
+```
+
+### 보너스
+- 페이지 스크롤 생성 후 고정 확인  
+- 가장 왼쪽에 로고 추가  
+
+### 오늘 질문
+**Q:** `transform`과 `transition`은 같이 사용하지 않는 건가요?  
+**A:** 아니요, 같이 사용합니다.  
+- `transform`으로 변형을 지정하고  
+- `transition`으로 변형 시 애니메이션 효과 적용
+```css
+.item {
+  transition: transform 0.3s ease;
+}
+.item:hover {
+  transform: translateY(-10px) rotateX(15deg);
+}
+```
+
+---
+
+### 🔹 오늘 핵심 복습 포인트
+1. CSS 3D 속성: `perspective`, `transform-style`, `backface-visibility`  
+2. 반응형 웹 핵심: Fluid Grid, Flexible Image, Media Queries  
+3. CSS 계산함수: `calc()`, `min()`, `max()`, `clamp()`  
+4. 박스 꾸미기: 그림자, 원형, hover 효과  
+5. 상단 고정 내비게이션 바 제작 + 반복 연습  
+6. 오타 하나도 중요함 → 실습에서 항상 주의  
+
