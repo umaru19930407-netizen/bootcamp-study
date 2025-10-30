@@ -1,1 +1,530 @@
 
+# 프론트엔드 부트캠프 4일차 정리 (2025-10-30)
+
+---
+
+## 10분 예습 — CSS 3D 속성 기본 개념
+
+- 파일: `3d-solo.html`
+- 핵심 CSS 3D 속성:
+  - `perspective`: 원근감 설정 (부모 요소에 적용)
+  - `transform-style: preserve-3d`: 자식 요소의 3D 공간 유지
+  - `backface-visibility`: 뒷면 표시 여부
+  - `perspective-origin`: 시점 위치 설정
+  - 3D 변환 함수: `rotateX/Y/Z`, `translateZ`, `translate3d`, `scaleZ`, `scale3d`
+- 실용 예제:
+  - 책 넘기기 효과
+  - 떠다니는 애니메이션
+- 주의사항:
+  - 부모 요소에 `perspective` 설정 필요
+  - 3D 효과는 GPU 사용, 모바일 성능 고려
+  - `transform-style: preserve-3d`는 자식 요소들에 적용
+
+---
+
+## 1교시 — CSS 3D 속성 심화
+
+- `perspective` 예제:
+
+```css
+.container {
+  perspective: 1000px;
+}
+.item:hover {
+  transform: rotateX(60deg) rotateY(60deg);
+}
+```
+
+- 3D 이동: `translateZ`, `translate3d`
+- 큐브 구성:
+
+```css
+.cube-container {
+  transform-style: preserve-3d;
+  animation: rotateCube 6s infinite linear;
+}
+.cube-face {
+  position: absolute;
+}
+.front {
+  transform: translateZ(50px);
+}
+.back {
+  transform: rotateY(180deg) translateZ(50px);
+}
+.right {
+  transform: rotateY(90deg) translateZ(50px);
+}
+```
+
+- 카드 회전 예제:
+
+```css
+.card-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+.card-front,
+.card-back {
+  backface-visibility: hidden;
+}
+.card-back {
+  transform: rotateY(180deg);
+}
+```
+
+---
+
+## 2교시 — 반응형 웹 핵심 기술
+
+- Fluid Grid, Flexible Image, Media Queries
+- CSS 계산 함수:
+  - `calc()`: 서로 다른 단위를 계산 (`width: calc(100% - 100px)`)
+  - `min()`: 최소값 선택 (`width: min(80%, 600px)`)
+  - `max()`: 최대값 선택 (`width: max(200px, 50%)`)
+  - `clamp()`: 최소값, 기본값, 최대값 제한 (`width: clamp(200px, 50vw, 600px)`)
+- Media Query 주요 예제:
+
+```css
+@media (min-width: 768px) {
+  /* 태블릿 */
+}
+@media (min-width: 1024px) {
+  /* 데스크톱 */
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* 태블릿만 */
+}
+@media (orientation: portrait) {
+  /* 세로 */
+}
+@media (prefers-color-scheme: dark) {
+  /* 다크모드 */
+}
+```
+
+- 반응형 그리드 예제:
+
+```css
+.grid {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+```
+
+- 반응형 이미지:
+  - Fluid Image
+  - Art Direction (`<picture>`)
+  - Resolution Switching (`srcset`)
+
+---
+
+## 3교시 — CSS 심화 이론
+
+- CSS 기본 지식과 작성법
+- CSS 적용 방식과 At-Rule
+- 선택자 가이드: 기본 → 복합
+- 상속과 스타일 제어
+- 텍스트 및 글꼴 꾸미기
+- 단위 이해와 활용
+- 목록 스타일링
+- 가상 선택자와 요소
+
+---
+
+## 4교시 — 박스 꾸미기 실습
+
+```css
+/* 원형 박스 */
+.circle-box {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #3498db, #e74c3c);
+}
+
+/* 그림자 박스 */
+.shadow-box {
+  padding: 20px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+.shadow-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+```
+
+---
+
+## 5교시 — 카드 제작 실습
+
+- 혼자 코딩 시 기억 문제 및 오타 발생
+- 반복 학습 필요
+
+---
+
+## 6교시 — 내비게이션 바 실습 & 복습
+
+### 목표
+
+- 웹 페이지 상단에 고정되어 스크롤 시에도 항상 보이는 내비게이션 바 제작
+
+### HTML 구조
+
+```html
+<nav>
+  <ul>
+    <li><a href="#">메뉴1</a></li>
+    <li><a href="#">메뉴2</a></li>
+  </ul>
+</nav>
+```
+
+### CSS 스타일
+
+- 화면 상단 고정, 전체 가로 폭
+- 배경색 지정
+- 메뉴 항목 가로 정렬 (`flex` 또는 `float`)
+- 기본 스타일 제거 (`list-style: none`, `text-decoration: none`)
+- 글자색 흰색, 안쪽 여백(padding)
+- `:hover` 시 배경색/글자색 변화
+- 보너스: 스크롤 확인, 로고 추가
+
+---
+
+## 7교시 — 반복 학습 & 질의응답
+
+- 질문: `transform`과 `transition`은 같이 사용하지 않는 건가요?
+- 내비게이션 실습 반복
+
+---
+
+---
+
+## 느낀점
+
+- 이해는 되지만 혼자 코딩하려면 막히는 경우 가 매우 높았습니다.
+- 오타 하나에도 오류 발생하는것 을 보고 세심한 확인 필요 하다고 느꼈고, 더욱 더 오타율을 높이는 데에 신경을 곤두 세울 것 입니다.
+
+
+## 오늘 실습 내용
+
+---
+
+## CSS 코드
+
+```css
+/* 전체 body 스타일 */
+body {
+  display: flex; /* 가로 정렬 */
+  justify-content: center; /* 가운데 정렬 */
+  align-items: flex-start; /* 위쪽 기준 정렬 */
+  gap: 20px; /* 카드 사이 여백 */
+  padding: 100px 20px 20px;
+  background: #f5f5f5;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* 카드 기본 스타일 */
+.card {
+  width: 300px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  transition: 0.3s;
+  cursor: pointer;
+  margin: 10px;
+}
+
+/* 카드 호버 효과 */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s;
+}
+
+/* 카드 컨테이너 */
+.card-container-wrapper {
+  display: flex;
+  gap: 30px;
+}
+
+/* 카드 이미지 */
+.card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/* 카드 내용 */
+.card-body {
+  padding: 15px 20px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.card-text {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+  margin: 0 0 15px 0;
+}
+
+/* 카드 하단 */
+.card-footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.read-link {
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* 카드 2 (프로필 포함) */
+.card-2 .card-header {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px 10px;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  background-color: #ccc;
+}
+
+.header-text-group {
+  text-align: left;
+}
+
+.card-2 .card-title {
+  font-size: 14px;
+  margin: 0;
+}
+
+.secondary-text {
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+}
+
+.footer-social {
+  justify-content: space-between;
+}
+
+.read-link-arrow {
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.icon-group {
+  display: flex;
+  gap: 15px;
+  color: #888;
+  font-size: 18px;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+/* 네비게이션 */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  z-index: 1000;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  margin: 1%;
+  padding: 0;
+}
+
+nav li {
+  margin: 0;
+}
+
+nav a {
+  display: block;
+  padding: 15px 25px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s;
+}
+
+nav a:hover {
+  background-color: #555;
+  color: #ffcc00;
+}
+
+/* 메인 컨텐츠 */
+main {
+  margin-top: 70px;
+  padding: 20px;
+}
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>카드 UI 레이아웃</title>
+    <link rel="stylesheet" href="main.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a herf="#home">홈</a></li>
+        <li><a herf="#about">소개</a></li>
+        <li><a herf="services">서비스</a></li>
+        <lia><a herf="contact">문의</a></lia>
+      </ul>
+    </nav>
+
+    <main>
+      <h1>상단 고정 내비게이션 예제</h1>
+      <div style="height: 1500px"></div>
+      
+    </main>
+    <div class="card card-1">
+      <img
+        src="./images/img-card.png"
+        alt="깔끔한 사무실 배경"
+        class="card-image"
+      />
+      <div class="card-body">
+        <h3 class="card-title">그것을 피가 청춘을 것이다</h3>
+        <p class="card-text">청춘의 하였으며 이것은 몸이 때문이다</p>
+        <div class="card-footer">
+          <a herf="#" class="read-link">읽다</a>
+        </div>
+      </div>
+    </div>
+    <div class="card card-2">
+      <div class="card-header">
+        <img
+          src="./images/img-profile.png"
+          alt="프로필 이미지"
+          class="profile-img"
+        />
+        <div class="header-text-group">
+          <h3 class="card-title">그것을 피가 청춘을 것이다</h3>
+          <p class="secondary-text">secondary</p>
+        </div>
+      </div>
+      <img
+        src="./images/img-card.png"
+        alt="깔끔한 사무실 배경"
+        class="card-image"
+      />
+      <div class="card-body">
+        <p class="card-text">청춘을 하였으며 이것은 몸이 때문이다</p>
+     
+        </div>
+        <div class="card-footer footer-social">
+          <a herf="#" class="read-link">읽다</a>
+          <div class="icon-group">
+            <span class="icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.9996 9.58446L16.842 8.74311C18.0037 7.5814 19.5268 7 21.0499 7C22.5718 7 24.0949 7.5814 25.2566 8.74311C27.5811 11.0665 27.5811 14.8343 25.2566 17.1588L24.4153 18.0001L15.9996 26.4158L14.4748 24.8908L17.7928 21.5728L17.7925 21.5725L22.8901 16.4749L23.7314 15.6325C24.4476 14.9163 24.8435 13.9638 24.8435 12.9509C24.8435 11.9381 24.4476 10.9846 23.7314 10.2683C23.0152 9.5521 22.0616 9.15731 21.0499 9.15731C20.037 9.15731 19.0835 9.5521 18.3672 10.2683L17.5248 11.1097L15.9996 12.636L14.4744 11.1097L13.633 10.2683C12.9157 9.5521 11.9643 9.15731 10.9504 9.15731C9.93755 9.15731 8.98402 9.5521 8.26779 10.2683C7.55156 10.9846 7.15677 11.9381 7.15677 12.9509C7.15677 13.9638 7.55156 14.9163 8.26779 15.6325L9.11022 16.4749L14.5858 21.9514L13.0607 23.4765L7.585 18.0001L6.74257 17.1588C4.41914 14.8343 4.41914 11.0665 6.74257 8.74311C7.90428 7.5814 9.42734 7 10.9504 7C12.4735 7 13.9965 7.5814 15.1582 8.74311L15.9996 9.58446Z"
+                  fill="#5A6A72"
+                />
+              </svg>
+            </span>
+            <span class="icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M25 9.5C25 7.567 23.433 6 21.5 6C19.567 6 18 7.567 18 9.5C18 9.71935 18.0202 9.934 18.0588 10.1422L12.6932 13.2722C12.0931 12.7891 11.3303 12.5 10.5 12.5C8.567 12.5 7 14.067 7 16C7 17.933 8.567 19.5 10.5 19.5C11.328 19.5 12.0889 19.2125 12.6882 18.7318L18.0573 21.8659C18.0197 22.0715 18 22.2835 18 22.5C18 24.433 19.567 26 21.5 26C23.433 26 25 24.433 25 22.5C25 20.567 23.433 19 21.5 19C20.5045 19 19.6061 19.4156 18.9688 20.0827L13.8294 17.0825C13.9401 16.7416 14 16.3778 14 16C14 15.6248 13.9409 15.2633 13.8316 14.9244L18.9746 11.9233C19.6115 12.5869 20.5075 13 21.5 13C23.433 13 25 11.433 25 9.5ZM20 22.5C20 21.6716 20.6716 21 21.5 21C22.3284 21 23 21.6716 23 22.5C23 23.3284 22.3284 24 21.5 24C20.6716 24 20 23.3284 20 22.5ZM10.5 14.5C9.67157 14.5 9 15.1716 9 16C9 16.8284 9.67157 17.5 10.5 17.5C11.3284 17.5 12 16.8284 12 16C12 15.1716 11.3284 14.5 10.5 14.5ZM20 9.5C20 8.67157 20.6716 8 21.5 8C22.3284 8 23 8.67157 23 9.5C23 10.3284 22.3284 11 21.5 11C20.6716 11 20 10.3284 20 9.5Z"
+                  fill="#5A6A72"
+                />
+              </svg>
+            </span>
+            <span class="icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M18 10C18 8.89543 17.1046 8 16 8C14.8954 8 14 8.89543 14 10C14 11.1046 14.8954 12 16 12C17.1046 12 18 11.1046 18 10ZM16 14C17.1046 14 18 14.8954 18 16C18 17.1046 17.1046 18 16 18C14.8954 18 14 17.1046 14 16C14 14.8954 14.8954 14 16 14ZM16 20C17.1046 20 18 20.8954 18 22C18 23.1046 17.1046 24 16 24C14.8954 24 14 23.1046 14 22C14 20.8954 14.8954 20 16 20Z"
+                  fill="#5A6A72"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
