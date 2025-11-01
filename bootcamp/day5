@@ -1,0 +1,305 @@
+# 🧩 프론트엔드 개발자 부트캠프 Day 5  
+📅 2025년 10월 31일  
+🎯 주제: CSS 심화 (Float / Flex / Grid / UI Layout)
+
+---
+
+## 🕐 1교시  
+### 🔹 Float 기본 개념
+- 요소를 왼쪽(left) 또는 오른쪽(right)으로 띄워서 배치  
+- 문서 흐름에서 제거되어 다른 요소들이 주위로 감쌈  
+- 이후 등장한 Flex, Grid가 Float의 한계를 보완함
+
+### 🔹 Flex 레이아웃 정렬의 모든 것
+- **1차원(1D) 레이아웃 시스템**  
+- 수평 또는 수직 한 방향으로 정렬이 가능  
+
+#### ✅ Flex Container 주요 속성
+| 속성 | 설명 |
+|------|------|
+| `display: flex` | Flexbox 레이아웃 활성화 |
+| `flex-direction` | 주 축 방향 (row / column) |
+| `justify-content` | 주 축 정렬 (가로 정렬) |
+| `align-items` | 교차 축 정렬 (세로 정렬) |
+| `flex-wrap` | 줄바꿈 여부 설정 |
+
+#### ✅ Flex Item 주요 속성
+| 속성 | 설명 |
+|------|------|
+| `flex-grow` | 남은 공간을 얼마나 차지할지 |
+| `flex-shrink` | 공간이 부족할 때 줄어드는 비율 |
+| `flex-basis` | 요소의 기본 크기 설정 |
+
+🔸 실습: 다양한 `justify-content` / `align-items` 조합으로 정렬 실험
+
+---
+
+## 🕑 2교시  
+### 🔹 Flex 실습 복습  
+- Header, Main, Footer 레이아웃 구성  
+- 가로 중앙 정렬 및 아이템 비율 조정 연습
+
+### 🔹 Grid 기본 개념  
+- **2차원(2D) 레이아웃 시스템**  
+- 행(row)과 열(column)로 구성 가능  
+
+#### ✅ Grid Container 주요 속성
+| 속성 | 설명 |
+|------|------|
+| `display: grid` | Grid 레이아웃 활성화 |
+| `grid-template-columns` | 열의 크기 지정 |
+| `grid-template-rows` | 행의 크기 지정 |
+| `gap` | 아이템 간 간격 |
+| `justify-items`, `align-items` | 아이템 정렬 |
+
+🔸 실습: 3x3 그리드 구성 후 영역 배치 실습
+
+---
+
+## 🕒 3교시  
+### 🔹 Grid 복습 + Navigation UI 결합
+- Grid로 Nav 영역, 메인 콘텐츠, 사이드바 구조 잡기  
+- 반응형을 고려한 Grid Template 수정 연습
+
+---
+
+## 🕓 4교시  
+### 🔹 Grid 복습 및 보강
+- `grid-template-areas`를 활용한 영역 배치  
+- `fr` 단위, `auto-fit`, `auto-fill` 차이 이해  
+
+### 🔹 로그인 페이지 제작 실습
+- 입력 필드(아이디/비밀번호) 정렬  
+- `align-content`, `justify-content` 활용
+
+---
+
+## 🕔 5교시  
+### 🔹 이메일 / 아이디 입력 필드 삽입  
+- `<form>` 구조 완성  
+- input label 정렬 연습  
+- 반응형 padding / margin 적용  
+
+### 🔹 카드 UI 레이아웃 시작
+- Flex / Grid 혼합 실습  
+- 카드 컴포넌트 설계 및 스타일링  
+
+---
+
+## 🕕 6~7교시  
+### 💻 실습 과제: **카드 UI 리스트 만들기**
+
+#### 📋 요구사항
+- [x] 최소 6개의 카드로 구성된 리스트  
+- [x] 각 카드에는 이미지, 제목, 설명, 버튼 포함  
+- [x] 반응형 레이아웃  
+  - 데스크톱: 3열  
+  - 태블릿: 2열  
+  - 모바일: 1열  
+- [x] 카드 간 간격 및 여백 적절히 설정  
+- [x] Hover 시 효과 추가 (scale 또는 box-shadow)
+
+#### 🎯 선택 과제 (2차 도전)
+- Float / Flexbox 방식으로 동일 레이아웃 구현해보기  
+
+---
+
+## 🧠 개인 목표
+- 💡 CSS 레이아웃 능력 향상  
+- 📚 정보처리산업기사 병행 공부 시작  
+
+---
+
+## 🧾 참고 키워드
+`float`, `flexbox`, `grid`, `flex-grow`, `grid-template-areas`, `responsive`, `hover effect`
+
+  
+
+---
+
+  ## 📘 복습 주제
+- 로그인 폼 디자인
+- 카드 UI 레이아웃 제작 (Grid)
+- 반응형 레이아웃 구현
+- hover 효과 실습
+
+---
+
+## 🧩 주요 복습 내용 요약
+
+### 🔹 로그인 박스 (Flexbox 활용)
+- `display: flex; flex-direction: column; align-items: center;`
+- 입력 필드, 버튼 정렬 및 간격 조정  
+- hover 시 버튼 색상 변경 (`blue → red`)
+
+### 🔹 카드 리스트 (Grid Layout)
+- `display: grid; grid-template-columns: repeat(3, 1fr);`
+- 카드 6개 구성 (이미지 + 제목 + 설명 + 버튼)
+- hover 시 `transform: scale(1.03)` 효과로 입체감 부여
+
+### 🔹 반응형 레이아웃
+| 화면 크기 | 레이아웃 |
+|------------|-----------|
+| PC (≥ 1024px) | 3열 |
+| Tablet (≤ 768px) | 2열 |
+| Mobile (≤ 460px) | 1열 |
+
+> 💡 *fr 단위는 Grid에서 “비율 단위”로, 전체 영역 중 나누는 비율을 의미합니다.*
+
+  ## 🧱 HTML 코드
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2025-11.01study</title>
+    <link rel="stylesheet" href="study.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>로그인</h2>
+      <input type="text" placeholder="아이디입력" />
+      <input type="email" placeholder="이메일입력" />
+      <input type="password" placeholder="패스워드입력" />
+      <button>로그인</button>
+    </div>
+
+    <section class="card-grid">
+      <div class="card">
+        <img src="https://picsum.photos/300/180?random=1" alt="" />
+        <div class="card-content">
+          <h3>카드제목1</h3>
+          <p>카드설명내용1</p>
+          <button>자세히보기</button>
+        </div>
+      </div>
+      <!-- 동일한 카드 6개 반복 -->
+    </section>
+  </body>
+</html>
+
+
+  CSS 코드
+  body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 40px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: arial, sans-serif;
+}
+
+/* 로그인 박스 */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: 30px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.login-container button:hover {
+  background: red;
+}
+
+/* 카드 레이아웃 */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-content h3 {
+  margin-bottom: 10px;
+}
+
+.card-content p {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.card-content button {
+  padding: 8px 12px;
+  background: #28a745;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.card-content button:hover {
+  background: #1e7e34;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 460px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
