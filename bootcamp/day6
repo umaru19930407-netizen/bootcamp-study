@@ -1,0 +1,186 @@
+# 🎨 Frontend Bootcamp Day 6 — 2025.11.03
+**주제:** CSS 가상 선택자 · Transform · Transition · Animation
+
+---
+
+## 🕐 1교시 — CSS 가상 선택자 (Pseudo-Selectors)
+
+### 🔹 A. 가상 클래스 (Pseudo-classes)
+요소의 **상태나 위치**를 기준으로 스타일 지정  
+
+| 선택자 | 설명 | 예시 |
+|--------|------|------|
+| `:hover` | 마우스를 올렸을 때 | `button:hover` |
+| `:active` | 클릭 중일 때 | `a:active` |
+| `:focus` | 입력창에 포커스가 있을 때 | `input:focus` |
+| `:first-child` / `:last-child` | 첫 번째 / 마지막 자식 요소 | `ul li:first-child` |
+| `:nth-child(n)` | n번째 자식 요소 | `p:nth-child(2n)` |
+| `:not(selector)` | 특정 선택자가 아닌 요소 | `div:not(.active)` |
+| `:checked` / `:disabled` / `:required` | 입력 상태 선택 | `input:checked` |
+| `:focus-within` | 하위 요소가 포커스될 때 부모 요소 선택 | `.form-group:focus-within` |
+
+---
+
+### 🔹 B. 가상 요소 (Pseudo-elements)
+요소의 특정 부분 선택 / 가상 콘텐츠 생성  
+
+| 선택자 | 설명 | 예시 |
+|--------|------|------|
+| `::before` / `::after` | 요소 앞뒤에 콘텐츠 삽입 | `.box::before { content: "★"; }` |
+| `::first-letter` | 첫 글자 스타일 지정 | `p::first-letter` |
+| `::first-line` | 첫 줄 스타일 지정 | `p::first-line` |
+| `::placeholder` | 입력창 placeholder 스타일 | `input::placeholder` |
+| `::selection` | 드래그 선택 영역 스타일 | `::selection { background: yellow; }` |
+
+---
+
+### 🔹 C. 속성 선택자 (Attribute Selectors)
+
+| 선택자 | 설명 | 예시 |
+|--------|------|------|
+| `[attr]` | 해당 속성을 가진 요소 | `[title]` |
+| `[attr="value"]` | 정확히 일치하는 속성값 | `input[type="password"]` |
+| `[attr~="value"]` | 공백으로 구분된 단어 포함 | `[class~="important"]` |
+| `[attr|="value"]` | 값이 `en` 또는 `en-`으로 시작 | `[lang|="en"]` |
+| `[attr^="value"]` | 특정 값으로 시작 | `a[href^="https"]` |
+| `[attr$="value"]` | 특정 값으로 끝남 | `img[src$=".png"]` |
+| `[attr*="value"]` | 특정 문자열 포함 | `a[href*="google"]` |
+
+---
+
+## 🕑 2교시 — CSS Transform (변형 속성)
+
+### 🔸 2D Transform
+- `translate(x, y)` : 위치 이동  
+- `scale(x, y)` : 크기 확대/축소  
+- `rotate(각도)` : 회전  
+- `skew(x, y)` : 기울이기  
+
+### 🔸 Multiple Transforms
+여러 효과를 동시에 적용 가능  
+\`\`\`css
+transform: rotate(15deg) scale(1.2) translateX(20px);
+\`\`\`
+
+### 🔸 transform-origin
+변형 기준점을 설정  
+\`\`\`css
+transform-origin: center center;
+\`\`\`
+
+### 🔸 3D Transform
+`rotateX`, `rotateY`, `rotateZ`, `translateZ` 등을 활용  
+
+---
+
+## ⚙️ Transform vs Position
+
+| 구분 | Transform | Position |
+|------|------------|-----------|
+| 용도 | **동적 위치 변경**, 애니메이션 | **정적 레이아웃 배치** |
+| 성능 | GPU 가속으로 부드러운 렌더링 | CPU 렌더링 |
+| 권장 상황 | 인터랙션 / 애니메이션 | 기본 배치 구조 설계 |
+
+**결론:**  
+- 정적인 배치는 `position`  
+- 애니메이션이나 동적 움직임은 `transform`
+
+---
+
+## 🧩 3~4교시 — 버튼 상태 및 인터랙션
+
+### 🔹 상태 기반 스타일링
+
+| 상태 | 설명 | 예시 |
+|------|------|------|
+| `:hover` | 마우스를 올렸을 때 | 배경색 변경, 확대 등 |
+| `:active` | 클릭 중일 때 | 눌리는 효과 |
+| `:disabled` | 비활성화 상태 | 투명도 감소 등 |
+
+### 🔹 Transform & Transition 효과
+\`\`\`css
+button {
+  transition: all 0.3s ease;
+}
+button:hover {
+  transform: scale(1.05);
+}
+\`\`\`
+
+---
+
+## 🪄 5~6교시 — 다양한 버튼 스타일 실습
+
+| 버튼 유형 | 설명 |
+|------------|------|
+| **기본 버튼** | 단순한 배경색과 텍스트 |
+| **그라데이션 버튼** | 배경에 gradient 적용 |
+| **테두리 버튼** | 배경 없이 border만 적용 |
+| **원형 버튼** | \`border-radius: 50%\` |
+| **아이콘 버튼** | 텍스트 + 아이콘 조합 |
+| **3D 버튼** | 그림자 및 transform으로 입체감 표현 |
+| **애니메이션 버튼** | hover 시 색, 크기, 위치 변화 |
+
+---
+
+## ⚡ 6교시 — CSS Transition (전환 효과)
+
+### ✳️ 개별 속성 (Longhand)
+| 속성 | 설명 |
+|------|------|
+| `transition-property` | 전환할 속성 지정 |
+| `transition-duration` | 전환 지속시간 |
+| `transition-timing-function` | 속도 곡선 (ease, linear 등) |
+| `transition-delay` | 시작 지연 (양수/음수 가능) |
+
+### ✳️ 단축 속성 (Shorthand)
+\`\`\`css
+transition: all 0.3s ease-in-out 0.1s;
+\`\`\`
+
+---
+
+## 🎞️ 8교시 — CSS Animation
+
+### 🔹 주요 속성
+| 속성 | 설명 |
+|------|------|
+| `animation-name` | 애니메이션 이름 |
+| `animation-duration` | 재생 시간 |
+| `animation-timing-function` | 속도 곡선 |
+| `animation-delay` | 시작 지연 |
+| `animation-iteration-count` | 반복 횟수 (`infinite` 가능) |
+| `animation-direction` | 진행 방향 (`normal`, `reverse`, `alternate`) |
+| `animation-fill-mode` | 애니메이션 전/후 상태 유지 |
+| `animation-play-state` | 재생/정지 제어 |
+| `animation` | 단축 속성 |
+
+### 🔹 예시
+\`\`\`css
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.box {
+  animation: fadeIn 1.5s ease-in-out forwards;
+}
+\`\`\`
+
+---
+
+## 🧠 오늘의 핵심 요약
+
+✅ `:hover`, `::before`, `[attr=value]` → CSS 선택자 마스터  
+✅ `transform` → 위치·회전·확대·기울이기  
+✅ `transition` → 부드러운 상태 전환  
+✅ `animation` → 반복적이고 복합적인 동작 제어  
+
+---
+
+**💡 정리 포인트:**  
+정적인 구조는 `position`,  
+동적인 연출은 `transform + transition + animation`
+
+  
+  
