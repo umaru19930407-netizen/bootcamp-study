@@ -1,0 +1,220 @@
+# 💻 Frontend Bootcamp Day 7 — 2025.11.04
+**주제:** 로딩 애니메이션 · 3D Transform · 미디어 쿼리 · 반응형 레이아웃 · Form 가상 선택자
+
+---
+
+## 🕐 1교시 — 로딩 스피너 & 타이핑 효과 실습
+
+- **로딩 스피너 (Loading Spinner)**  
+  → `@keyframes`를 이용해 회전 애니메이션 구현  
+  ```css
+  .spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid #ddd;
+    border-top-color: #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  ```
+
+- **타이핑 효과 (Typing Animation)**  
+  → `width` + `steps()` 타이밍함수를 이용한 글자 타이핑 효과  
+  ```css
+  .typing {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #333;
+    animation: typing 4s steps(30), blink 0.7s step-end infinite alternate;
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink {
+    50% { border-color: transparent; }
+  }
+  ```
+
+---
+
+## 🕑 2교시 — 3D Transform 기초 & 이미지 3D 효과
+
+- **3D Transform 핵심 속성**
+  - `transform-style: preserve-3d;`
+  - `perspective: 1000px;`
+  - `rotateX()`, `rotateY()`, `translateZ()`
+
+- **3D 이미지 호버 효과 예제**
+  ```css
+  .card img {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+
+  .card:hover img {
+    transform: rotateY(15deg) scale(1.05);
+  }
+  ```
+
+- **3D 큐브 예제 (코드 설명 중심)**
+  - `transform`을 축 조합으로 회전시켜 입체 표현
+  - 각 면에 `position: absolute;`와 `transform`을 적용하여 배치  
+
+---
+
+## 🕒 3교시 — CSS 미디어 쿼리 (Media Query)
+
+### 📱 1. 화면 너비 (min-width)
+> 모바일 우선 접근법  
+```css
+@media (min-width: 768px) {
+  body { background-color: #f5f5f5; }
+}
+```
+
+### 💻 2. 특정 화면 범위 (and 연산자)
+```css
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container { grid-template-columns: 1fr 1fr; }
+}
+```
+
+### 📲 3. 화면 방향 (orientation)
+```css
+@media (orientation: landscape) {
+  .video { height: 60vh; }
+}
+```
+
+### 🌙 4. 사용자 환경 설정 (prefers-color-scheme)
+```css
+@media (prefers-color-scheme: dark) {
+  body { background-color: #222; color: #eee; }
+}
+```
+
+### 🖨️ 5. 인쇄용 스타일
+```css
+@media print {
+  header, footer { display: none; }
+}
+```
+
+---
+
+## 🧱 4교시 — 반응형 레이아웃 & 이미지 기초
+
+### 📏 반응형 레이아웃 실습
+- `flex` / `grid`로 레이아웃 구성  
+- `@media`를 이용해 열(column) 수를 유연하게 조정  
+
+### 🖼️ 반응형 이미지 (Responsive Image)
+- `srcset`과 `sizes` 속성으로 다양한 해상도 대응  
+- `picture` 태그로 **디바이스별 다른 이미지** 제공  
+
+```html
+<picture>
+  <source media="(min-width: 1024px)" srcset="img-large.jpg">
+  <source media="(min-width: 600px)" srcset="img-medium.jpg">
+  <img src="img-small.jpg" alt="반응형 이미지 예시">
+</picture>
+```
+
+---
+
+## 🧭 5교시 — 반응형 레이아웃 확장
+
+- **네비게이션 바(Navbar) 추가**  
+- **아이콘 (Font Awesome 등)** 사용  
+- 모바일 메뉴(햄버거 아이콘) 예제 구성  
+
+---
+
+## 🖼️ 6~7교시 — 반응형 이미지 갤러리 실습
+
+- **Grid 기반 갤러리 레이아웃**
+  ```css
+  .gallery {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+  ```
+
+- **기기별 다른 이미지 출력**
+  → `picture`, `srcset` 속성 활용하여 모바일과 데스크톱 차별화  
+
+---
+
+## 🧾 7~8교시 — Form 관련 동적 가상 선택자 실습
+
+- **예시 코드**
+  ```css
+  .form-group.is-required label::after {
+    content: " *";
+    color: #e74c3c;
+  }
+  ```
+
+- `.is-required`를 **label의 부모 요소에 직접 붙여야 작동**  
+  (`.form-group .is-required` 로 잘못 작성하면 동작하지 않음)
+
+---
+
+## 💭 오늘의 느낀 점
+
+> form 관련 동적 가상 선택자 실습 중,  
+> 아래 코드에서 `is-required` 클래스 위치를 잘못 작성해서 오류가 발생했다.
+
+```css
+/* ❌ 잘못된 코드 */
+.form-group .is-required label::after {
+  content: " *";
+  color: #e74c3c;
+}
+
+/* ✅ 올바른 코드 */
+.form-group.is-required label::after {
+  content: " *";
+  color: #e74c3c;
+}
+```
+
+> `.is-required`가 **.form-group에 직접 붙어야** 작동한다는 점을 이해함.  
+> 이 부분은 나중에 다시 복습할 예정.
+
+---
+
+## 🧠 오늘의 핵심 요약
+
+✅ 로딩 스피너 & 타이핑 애니메이션 구현  
+✅ CSS 3D Transform 개념 및 호버 효과  
+✅ 미디어 쿼리로 반응형 화면 제어  
+✅ `srcset` / `picture` 로 반응형 이미지 처리  
+✅ Form 관련 가상 선택자(`::after`)의 위치 중요성 이해  
+
+---
+
+**💡 핵심 정리:**  
+> CSS는 시각적 인터랙션과 반응형 레이아웃을 결합할 때 진가를 발휘한다.  
+> 정확한 선택자 구조와 미디어 쿼리의 조합이 **유연한 UI**의 핵심이다.
