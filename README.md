@@ -22,27 +22,7 @@
 
 -
 
-## 오늘 배웠던 것 을 혼자서 처음 해보았습니다.
-
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1일차</title>
-  </head>
-  <body>
-    <h1>about</h1>
-    <img src="images/rabbit.png"토끼 사진" width="400" height="300" />
-
-    <h2>나의 장점 top3</h2>
-    <ol type="1" type reversed>
-      <li>성실함</li>
-      <li>책임감</li>
-      <li>긍정적인 마인드</li>
-    </ol>
-  </body>
-</html>
-
+ 
 
 오늘의 느낀 점
 
